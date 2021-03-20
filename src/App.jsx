@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <header className="app-header">
-        <a href="#" className="logo">
+        <a href="/" className="logo">
           <h1>
             <img src="inverted-logo.png" alt="logo"/>
             <span className="text">Spotify Lyrics</span>
@@ -23,7 +23,7 @@ function App() {
               <button><span className="text">Track History</span></button>
             </li>
             <li>
-              <a href="#"><span className="text">See on Github</span></a>
+              <a href="/"><span className="text">See on Github</span></a>
             </li>
           </ul>          
         </nav>
@@ -31,7 +31,7 @@ function App() {
       <main className="app-main">
         <section className="profile">
           {false ? 
-            <a href="#" className="login">Login to Spotify</a>
+            <a href="/" className="login">Login to Spotify</a>
             :
             <Dropdown options={["Logout"]}>
               <>
