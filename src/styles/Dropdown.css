@@ -1,0 +1,28 @@
+.dropdown-parent:hover, .dropdown-parent:focus {
+  text-decoration: none;
+}
+
+.dropdown-label:hover, .dropdown-label:focus {
+  text-decoration: underline;
+}
+
+.dropdown-label {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  background-color: #1c1c1c;
+  margin: .2em;
+  padding: .5em; 
+}
+
+.dropdown-option {
+  padding: .2em;
+  cursor: pointer;
+}
+
+.dropdown-option:hover, .dropdown-option:focus {
+  background-color: #3e3e3e;
+  color: #fff;
+}

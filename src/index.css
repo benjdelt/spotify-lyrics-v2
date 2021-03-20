@@ -1,13 +1,214 @@
-body {
+/* General Styles  */
+
+html, body, #root {
+  height: 100%;
+  color: #b3b3b3;
+  font-family: Montserrat, sans-serif;
+  font-size: 100%;
+  background: #212121;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+li {
+  list-style: none;
+}
+
+button {
+  color: #fff;
+  background-color: transparent;
+  text-align: left;
+  padding: 0;
+  border-color: transparent;
+  border-width: 0;
+  border-style: unset;
+  font: unset;
+  cursor: pointer;
+}
+
+button:focus, a:focus {
+  outline: unset;
+}
+
+a {
+  color: #fff;
+}
+
+/* Header  */
+
+.app-header {
+  background-color: #121212;
+  height: 100vh;
+  width: 22em;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header>* {
+  padding: 0 1.5rem;
+}
+
+.logo img {
+  width: 1.5em;
+  margin-right: .5em;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  /* margin: 2em 0;  */
+  flex: 5;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 1em 0;
+}
+
+nav ul a {
+  text-decoration: none;
+}
+
+nav ul li>* {
+  font-size: 1.3em;
+}
+
+nav ul li>*:focus, nav ul li>*:hover {
+  text-decoration: underline;
+}
+
+/* Main  */
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100vw - 22em);
+  float: right;
+}
+
+.profile {
+  display: flex;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+}
+
+.login {
+  justify-content: center;
+  padding: 11px 44px;
+  border: 2px solid #fff;
+  border-radius: 500px;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: center;
+  -webkit-font-feature-settings: "c2sc";
+  font-feature-settings: "c2sc";
+  font-variant: small-caps;
+}
+
+.login:hover, .login:focus {
+  -webkit-transform: scale(1.06);
+  transform: scale(1.06);
+  outline: none;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 2em;
+  border-radius: 50%;
+  margin-right: .5em;
+}
+
+.song {
+  margin: 5em 0;
+}
+
+.song-header {
+  display: flex;
+}
+
+.cover {
+  margin-left: .5em;;
+  width: 200px;
+}
+
+.song-info {
+  margin-left: 1em;
+}
+
+.song-main {
+  margin-top: 2em;
+  padding-left: 5em;
+}
+
+/* Media Queries */
+
+@media (max-width: 1024px) {
+  .app-header {
+    width: 21em;
+  }
+
+  main {
+    width: calc(100vw - 21em);
+  }
+}
+
+@media (max-width: 860px) {
+  .app-header {
+    height: 10vh;
+    width: 100vw;
+    flex-direction: row;
+    bottom: 0;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  main {
+    float: unset;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+  }
+}
+
+@media (max-width: 490px) {
+  .song-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .song-info {
+    margin: 1em;
+  }
+
+  .song-info>* {
+    margin: .5em 0;
+  }
+
+  .song-main {
+    margin: 0 1em;
+    padding-left: 0;
+  }
 }
