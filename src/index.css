@@ -67,6 +67,7 @@ h1 {
 nav {
   /* margin: 2em 0;  */
   flex: 5;
+  color: #fff;
 }
 
 nav ul {

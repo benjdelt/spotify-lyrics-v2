@@ -1,4 +1,8 @@
 import Dropdown from './components/Dropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
 
 function App() {
 
@@ -14,15 +18,23 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Dropdown options={["English", "Français"]}><span className="text">Language</span></Dropdown>
+              <Dropdown options={["English", "Français"]}>
+                <FontAwesomeIcon icon={faGlobeEurope} />&nbsp;
+                <span className="text">Language</span>
+              </Dropdown>
             </li>
             <li>
-              <button><span className="text">Currently Playing</span></button>
+              <button>
+                <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
+                <span className="text">Currently Playing</span>
+              </button>
             </li>
             <li>
+              <FontAwesomeIcon icon={faHistory} />&nbsp;
               <button><span className="text">Track History</span></button>
             </li>
             <li>
+              <FontAwesomeIcon icon={faGithub} />&nbsp;
               <a href="/"><span className="text">See on Github</span></a>
             </li>
           </ul>          
@@ -35,10 +47,10 @@ function App() {
             :
             <Dropdown options={["Logout"]}>
               <>
-              <img src="https://picsum.photos/200" alt="avatar" className="avatar"/>
-              <span className="user text">
-                Benjamin Deltenre
-              </span>
+                <img src="https://picsum.photos/200" alt="avatar" className="avatar"/>
+                <span className="user text">
+                  Benjamin Deltenre
+                </span>
               </>
             </Dropdown>
           }
