@@ -16,7 +16,7 @@ function Dropdown(props) {
       <div className="dropdown-menu" style={{display: open ? "block" : "none"} }>
         {props.options.map(option => (
           <div key={option} className="dropdown-option">
-            {option}
+            <span className="menu-text">{option}</span>
           </div>
         ))}
       </div>

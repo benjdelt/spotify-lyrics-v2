@@ -12,7 +12,7 @@ function App() {
         <a href="/" className="logo">
           <h1>
             <img src="inverted-logo.png" alt="logo"/>
-            <span className="text">Spotify Lyrics</span>
+            <span className="menu-text">Spotify Lyrics</span>
           </h1>
         </a>
         <nav>
@@ -20,22 +20,22 @@ function App() {
             <li>
               <Dropdown options={["English", "Français"]}>
                 <FontAwesomeIcon icon={faGlobeEurope} />&nbsp;
-                <span className="text">Language</span>
+                <span className="menu-text">Language</span>
               </Dropdown>
             </li>
             <li>
               <button>
                 <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
-                <span className="text">Currently Playing</span>
+                <span className="menu-text">Currently Playing</span>
               </button>
             </li>
             <li>
               <FontAwesomeIcon icon={faHistory} />&nbsp;
-              <button><span className="text">Track History</span></button>
+              <button><span className="menu-text">Track History</span></button>
             </li>
             <li>
               <FontAwesomeIcon icon={faGithub} />&nbsp;
-              <a href="/"><span className="text">See on Github</span></a>
+              <a href="/"><span className="menu-text">See on Github</span></a>
             </li>
           </ul>          
         </nav>
