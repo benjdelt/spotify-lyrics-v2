@@ -11,13 +11,13 @@ function Dropdown(props) {
   const openIcon = props.up ? faCaretDown : faCaretUp;
 
   const styles = props.up ? {
-    display: open ? "block" : "none",
-    // visibility: open ? "visible" : "hidden",
+    // display: open ? "block" : "none",
+    visibility: open ? "visible" : "hidden",
     position: "relative",
     bottom: "6.5em",
   } : {
-    // visibility: open ? "visible" : "hidden",
-    display: open ? "block" : "none",
+    visibility: open ? "visible" : "hidden",
+    // display: open ? "block" : "none",
   };
 
   return (

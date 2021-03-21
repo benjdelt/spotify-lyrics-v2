@@ -4,6 +4,7 @@
 
 .dropdown-parent:hover, .dropdown-parent:focus {
   text-decoration: none;
+  color: #b3b3b3;
 }
 
 .dropdown-label:hover {
