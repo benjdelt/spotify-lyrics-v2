@@ -14,7 +14,7 @@ li {
 }
 
 button {
-  color: #fff;
+  color: #b3b3b3;
   background-color: transparent;
   text-align: left;
   padding: 0;
@@ -30,7 +30,7 @@ button:focus, a:focus {
 }
 
 a {
-  color: #fff;
+  color: #b3b3b3;
 }
 
 /* Header  */
@@ -65,9 +65,8 @@ h1 {
 }
 
 nav {
-  /* margin: 2em 0;  */
   flex: 5;
-  color: #fff;
+  color: #b3b3b3;
 }
 
 nav ul {
@@ -88,7 +87,12 @@ nav ul li>* {
 }
 
 nav ul li>*:focus, nav ul li>*:hover {
-  text-decoration: underline;
+  color: #fff;;
+}
+
+nav ul .language {
+  position: absolute;
+  bottom: 0;
 }
 
 /* Main  */
@@ -109,6 +113,7 @@ main {
 }
 
 .login {
+  color: #fff;
   justify-content: center;
   padding: 11px 44px;
   border: 2px solid #fff;
@@ -179,7 +184,7 @@ main {
   }
 
   .app-header {
-    height: 10vh;
+    height: 5em;
     width: 100vw;
     flex-direction: row;
     bottom: 0;
@@ -202,6 +207,15 @@ main {
 
   nav ul li {
     margin: 0 1em;
+    height: 2em;
+  }
+
+  nav ul li button, nav ul li a {
+    color: #fff;
+  }
+
+  nav ul .language {
+    position: relative;
   }
 
   main {
@@ -241,6 +255,20 @@ main {
 
 @media (max-width: 415px) {
   .app-header>* {
+    padding-left: .5em;
+  }
+
+  .language .dropdown-label {
+    align-items: unset;
+  }
+}
+
+@media (max-width: 325px) {
+  .app-header>* {
+    padding: 0;
+  }
+
+  .logo {
     padding-left: .5em;
   }
 }

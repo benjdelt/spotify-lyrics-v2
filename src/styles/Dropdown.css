@@ -1,9 +1,13 @@
+.dropdown-parent {
+  height: 2em;
+}
+
 .dropdown-parent:hover, .dropdown-parent:focus {
   text-decoration: none;
 }
 
-.dropdown-label:hover, .dropdown-label:focus {
-  text-decoration: underline;
+.dropdown-label:hover {
+  color: #fff;
 }
 
 .dropdown-label {
@@ -25,4 +29,10 @@
 .dropdown-option:hover, .dropdown-option:focus {
   background-color: #3e3e3e;
   color: #fff;
+}
+
+@media (max-width: 860px) {
+  .option-text {
+    font-size: .75rem;
+  }
 }

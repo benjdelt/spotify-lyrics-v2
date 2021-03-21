@@ -7,16 +7,29 @@ function Dropdown(props) {
 
   const [open, setOpen] = useState(false);
 
+  const closedIcon = props.up ? faCaretUp : faCaretDown;
+  const openIcon = props.up ? faCaretDown : faCaretUp;
+
+  const styles = props.up ? {
+    display: open ? "block" : "none",
+    // visibility: open ? "visible" : "hidden",
+    position: "relative",
+    bottom: "6.5em",
+  } : {
+    // visibility: open ? "visible" : "hidden",
+    display: open ? "block" : "none",
+  };
+
   return (
     <div className="dropdown-parent">
       <button onClick={() => setOpen(!open)} className="dropdown-label">
         {props.children} &nbsp;
-        <FontAwesomeIcon icon={open ? faCaretUp : faCaretDown} />
+        <FontAwesomeIcon icon={open ? openIcon : closedIcon} />
       </button>
-      <div className="dropdown-menu" style={{display: open ? "block" : "none"} }>
+      <div className="dropdown-menu" style={styles}>
         {props.options.map(option => (
           <div key={option} className="dropdown-option">
-            <span className="menu-text">{option}</span>
+            <span className="option-text">{option}</span>
           </div>
         ))}
       </div>
