@@ -37,3 +37,9 @@
     font-size: .75rem;
   }
 }
+
+@media (max-width: 732px) {
+  .option-text {
+    font-size: .85rem;
+  }
+}
