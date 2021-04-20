@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "currentlyPlaying": "Lecture en cours",
+    "trackHistory": "Historique",
+    "seeOnGithub": "Voir sur Github",
+    "language": "Langue"
+  },
+  "disclaimer": {
+    "header": "Veuillez vous connecter pour continuer",
+    "p1": "Cliquer sur \"Connexion à Spotify\" en haut à droite de l'écran pour vous connecter à votre compte Spotify, ensuite, cliquez sur \"Okay\" pour autoriser cette application à accéderaux données de votre compte Spotify.",
+    "p2": "Cette application afficheles paroles de la chanson en cours de lecture sur votre compte Spotify. Le menu à gauche vous permet égalment de visualiser les paroles deschansons lues sur votre compte précédemment.",
+    "p3": "Bien quedes cookies soient utilisés pour maintenir la connexion avec votr compte Spotify, aucune donnée n'est collectée ou sauvegardée."
+  },
+  "login": {
+    "button": "Connexion à Spotify"
+  },
+  "user": {
+    "logout": "Déconnexion"
+  }
+}

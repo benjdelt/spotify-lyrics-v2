@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "currentlyPlaying": "Currently Playing",
+    "trackHistory": "Track History",
+    "seeOnGithub": "See on Github",
+    "language": "Language"
+  },
+  "disclaimer": {
+    "header": "Please log in to continue",
+    "p1": "Click on the \"Login to Spotify\" button in the upper-left corner to connect to your Spotify account, then click \"Okay\" to grant authorization to this app.",
+    "p2": "This app shows the lyrics of the track currently playing on your Spotify account. The left-side menu allows you to also see the lyrics for your recently played tracks or to go back to your currently playing track.",
+    "p3": "Although cookies are used to keep track of your Spotify account, no information is collected or saved."
+  },
+  "login": {
+    "button": "Login to Spotify"
+  },
+  "user": {
+    "logout": "Logout"
+  }
+}

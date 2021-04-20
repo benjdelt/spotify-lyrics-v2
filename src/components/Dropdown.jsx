@@ -27,6 +27,12 @@ function Dropdown(props) {
     }
   };
 
+  const optionHandler = event => {
+    event.preventDefault();
+    props.optionHandler(event);
+    setOpen(false);
+  };
+
   const closedIcon = props.up ? faCaretUp : faCaretDown;
   const openIcon = props.up ? faCaretDown : faCaretUp;
 
@@ -49,7 +55,7 @@ function Dropdown(props) {
       {/* {open && */}
       <div className="dropdown-menu" style={styles} ref={wrapperRef}>
         {props.options.map(option => (
-          <div key={option} className="dropdown-option">
+          <div key={option} className="dropdown-option" onClick={optionHandler}>
             <span className="option-text">{option}</span>
           </div>
         ))}
