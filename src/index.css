@@ -144,6 +144,11 @@ main {
   margin-right: .5em;
 }
 
+.disclaimer {
+  width: 40vw;
+  margin-top: 60px;
+}
+
 .song {
   margin: 5em 0;
 }
@@ -233,6 +238,10 @@ main {
 }
 
 @media (max-width: 490px) {
+  .disclaimer {
+    width: 60vw;
+  }
+
   .song-header {
     display: flex;
     flex-direction: column;
