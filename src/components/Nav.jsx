@@ -33,7 +33,7 @@ function Nav() {
           </button>
         </li>
         <li>
-          <a href="/">
+          <a href="https://github.com/benjdelt/spotify-lyrics-v2" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />&nbsp;
             <span className="menu-text">{ t('nav.seeOnGithub') }</span>
           </a>
