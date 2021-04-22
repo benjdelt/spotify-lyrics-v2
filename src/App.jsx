@@ -3,10 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeEurope, faVolumeUp, faHistory, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+
+import { getUser } from './utils/data';
 
 
 function App() {
+
+  const [state, setState] = useState({});
+
+  useEffect(async () => {
+    const user = await getUser();
+    setState({...state, username: user.name, avatarUrl: user.avatar});
+  }, []);
 
   const { t, i18n } = useTranslation();
 
@@ -18,15 +27,20 @@ function App() {
     i18n.changeLanguage(languages[event.target.innerText]);
   };
 
+  const logout = () => {
+    window.location.hash = "";
+    setState({});
+  }
+
   return (
     <>
       <header className="app-header">
-        <a href="/" className="logo">
+        <div className="logo">
           <h1>
             <img src="inverted-logo.png" alt="logo"/>
             <span className="menu-text">Spotify Lyrics</span>
           </h1>
-        </a>
+        </div>
         <nav>
           <ul>
             <li>
@@ -58,14 +72,14 @@ function App() {
       </header>
       <main className="app-main">
         <section className="profile">
-          {true ? 
-            <a href="/" className="login">{ t('login.button') }</a>
+          {!state.username ? 
+            <a href="/.netlify/functions/login" className="login">{ t('login.button') }</a>
             :
-            <Dropdown options={[t('user.logout')]}>
+            <Dropdown options={[t('user.logout')]} optionHandler={logout}>
               <>
-                <img src="https://picsum.photos/200" alt="avatar" className="avatar"/>
+                <img src={state.avatarUrl} alt="avatar" className="avatar"/>
                 <span className="user text">
-                  Benjamin Deltenre
+                  {state.username}
                 </span>
               </>
             </Dropdown>
@@ -158,12 +172,12 @@ function Loader() {
   return (
     <>
       <header className="app-header">
-      <a href="/" className="logo">
+      <div href="/" className="logo">
          <h1>
            <img src="inverted-logo.png" alt="logo"/>
            <span className="menu-text">Spotify Lyrics</span>
          </h1>
-       </a>
+       </div>
       </header>
       <main className="app-main">
         <section className="loading">
