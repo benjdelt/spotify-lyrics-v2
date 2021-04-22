@@ -2,8 +2,7 @@ import Layout from './components/Layout';
 import Nav from './components/Nav';
 import Dropdown from './components/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobeEurope, faVolumeUp, faHistory, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Suspense, useEffect, useState } from 'react';
 
