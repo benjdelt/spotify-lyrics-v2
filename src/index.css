@@ -171,6 +171,14 @@ main {
   padding-left: 5em;
 }
 
+.loading {
+  margin: 3em;
+}
+
+.loading svg {
+  font-size: 3rem;
+}
+
 /* Media Queries */
 
 @media (max-width: 1024px) {
