@@ -2,7 +2,6 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
 
-
 const getHashParams = (location = window.location) => {
   const q = location.hash.substring(2);
 
