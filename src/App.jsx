@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser } from './utils/data';
+import { getUser } from './api';
 
 
 function App() {

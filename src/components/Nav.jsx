@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Dropdown from './Dropdown';
+import '../styles/Nav.css';
 
 
 function Nav() {

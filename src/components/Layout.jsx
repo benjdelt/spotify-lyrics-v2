@@ -1,3 +1,5 @@
+import '../styles/Layout.css';
+
 function Layout(props) {
   return (
     <>

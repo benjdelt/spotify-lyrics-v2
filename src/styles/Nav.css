@@ -1,0 +1,58 @@
+nav {
+  flex: 5;
+  color: #b3b3b3;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 1em 0;
+}
+
+nav ul a {
+  text-decoration: none;
+}
+
+nav ul li>* {
+  font-size: 1.3em;
+}
+
+nav ul li>*:focus, nav ul li>*:hover {
+  color: #fff;;
+}
+
+nav ul .language {
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 860px) {
+  nav ul {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav ul li {
+    margin: 0 1em;
+    height: 2em;
+  }
+
+  nav ul li button, nav ul li a {
+    color: #fff;
+  }
+
+  nav ul .language {
+    position: relative;
+  }
+}
+
+@media (max-width: 415px) {
+  .language .dropdown-label {
+    align-items: unset;
+  }
+}
