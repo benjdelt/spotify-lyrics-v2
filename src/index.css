@@ -35,14 +35,6 @@ a {
 
 /* Main  */
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: calc(100vw - 22em);
-  float: right;
-}
-
 .profile {
   display: flex;
   position: fixed;
@@ -95,6 +87,10 @@ main {
   display: flex;
 }
 
+.song-info h5 {
+  font-size: 1em;
+}
+
 .cover {
   margin-left: .5em;;
   width: 200px;
@@ -119,22 +115,9 @@ main {
 
 /* Media Queries */
 
-@media (max-width: 1024px) {
-  main {
-    width: calc(100vw - 21em);
-  }
-}
-
 @media (max-width: 860px) {
   .menu-text {
     font-size: .75rem;
-  }
-
-  main {
-    float: unset;
-    display: flex;
-    justify-content: center;
-    width: 100vw;
   }
 }
 
