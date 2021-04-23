@@ -30,3 +30,4 @@ export const getUser = async () => {
   const response = await spotifyApi.getMe();
   return {name: response.display_name, avatar: response.images[0].url};
 }
+
