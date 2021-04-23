@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser } from './api';
+import { getUser, getNowPlaying } from './api';
 
 
 function App() {
@@ -16,6 +16,8 @@ function App() {
   useEffect(async () => {
     const user = await getUser();
     setState({...state, username: user.name, avatarUrl: user.avatar});
+    const song = await getNowPlaying();
+    setState({...state, title: song.title, artist: song.artist, album: song.album, coverUrl: song.coverUrl, })
   }, []);
 
   const { t } = useTranslation();
@@ -42,14 +44,14 @@ function App() {
             </Dropdown>
           }
         </section>
-        {false ? (
+        {true ? (
           <section className="song">
             <header className="song-header">
-              <img src="https://i.scdn.co/image/ab67616d0000b27395313a5eee00d9bdf37883e2" alt="cover" className="cover"/>
+              <img src={state.coverUrl} alt="cover" className="cover"/>
               <section className="song-info">
-                <h2>Tie Your Mother Down - Remastered 2011</h2>
-                <h5>Queen</h5>
-                <p>A Day At The Races (Deluxe Remastered Version)</p>
+                <h2>{state.title}</h2>
+                <h5>{state.artist}</h5>
+                <p>{state.album}</p>
               </section>
             </header>
             <section className="song-main">

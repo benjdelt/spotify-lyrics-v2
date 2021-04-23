@@ -28,6 +28,28 @@ if (token) {
 
 export const getUser = async () => {
   const response = await spotifyApi.getMe();
-  return {name: response.display_name, avatar: response.images[0].url};
+  return {
+    name: response.display_name, 
+    avatar: response.images[0].url
+  };
 }
 
+export const getNowPlaying = async () => {
+  const nowPlaying = await spotifyApi.getMyCurrentPlaybackState();
+  if (nowPlaying) {
+    return { 
+      title: nowPlaying.item.name,
+      artist: nowPlaying.item.artists[0].name,
+      album: nowPlaying.item.album.name, 
+      coverUrl: nowPlaying.item.album.images[0].url,
+    }
+  }
+  const lastPlayed = await spotifyApi.getMyRecentlyPlayedTracks({"limit": 1})
+  console.log(lastPlayed)
+  return { 
+    title: lastPlayed.items[0].track.name,
+    artist: lastPlayed.items[0].track.artists[0].name,
+    album: lastPlayed.items[0].track.album.name, 
+    coverUrl: lastPlayed.items[0].track.album.images[0].url,
+  }
+}
