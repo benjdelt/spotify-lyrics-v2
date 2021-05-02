@@ -23,7 +23,7 @@ const clientId = process.env.SPOTIFY_CLIENT_ID,
   authorizePath = `${spotifyURL}/authorize?`,
   tokenPath = `${spotifyURL}/api/token`,
   profilePath = `${spotifyURL}/v1/me/`,
-  redirectUri = `${siteUrl}/.netlify/functions/callback`;
+  redirectUri = `${siteUrl}/.netlify/functions/callback`
 
 module.exports = {
   clientId,

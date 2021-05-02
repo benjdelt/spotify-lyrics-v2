@@ -5,7 +5,7 @@ const {
   redirectUri,
   authorizePath,
   devMode,
-} = require("./utils/auth-config");
+} = require("./utils/config");
 
 // requested application authorizations
 const scopes = ["user-read-private", "user-read-email", "user-read-playback-state", "user-read-recently-played"];

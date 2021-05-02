@@ -5,7 +5,7 @@ const {
   redirectUri,
   tokenPath,
   siteUrl,
-} = require("./utils/auth-config");
+} = require("./utils/config");
 
 /* Function to handle Spotify auth callback */
 exports.handler = async function (event, context) {
@@ -58,7 +58,7 @@ exports.handler = async function (event, context) {
         };
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         return {
           statusCode: 302, // must be a redirect status code or the client won't be redirected
           headers: {

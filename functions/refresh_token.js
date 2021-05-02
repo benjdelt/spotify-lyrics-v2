@@ -1,12 +1,11 @@
 const axios = require("axios");
-const { clientId, clientSecret, tokenPath } = require("./utils/auth-config");
+const { clientId, clientSecret, tokenPath } = require("./utils/config");
 
 /* Function to handle refreshing an access token */
 exports.handler = async function (event, context) {
   // requesting access token from refresh
   // get the refresh token from the query
   let refresh_token = event.queryStringParameters.refresh_token;
-  console.log("refreshing token");
   const authOptions = {
     method: "post",
     url: tokenPath,
