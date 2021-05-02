@@ -1,3 +1,4 @@
+import axios from 'axios';
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
@@ -34,22 +35,39 @@ export const getUser = async () => {
   };
 }
 
+const getLyrics = async (artist, title) => {
+  const lyrics = await axios.get(`/.netlify/functions/lyrics?artist=${artist}&title=${title}`);
+  return lyrics.data.split("\n");
+}
+
 export const getNowPlaying = async () => {
   const nowPlaying = await spotifyApi.getMyCurrentPlaybackState();
   if (nowPlaying) {
+    const lyrics = await getLyrics(nowPlaying.item.artists[0].name, nowPlaying.item.name);
     return { 
       title: nowPlaying.item.name,
       artist: nowPlaying.item.artists[0].name,
       album: nowPlaying.item.album.name, 
       coverUrl: nowPlaying.item.album.images[0].url,
+      lyrics: lyrics,
     }
   }
   const lastPlayed = await spotifyApi.getMyRecentlyPlayedTracks({"limit": 1})
-  console.log(lastPlayed)
+  if (lastPlayed.items.length > 0) {
+    const lyrics = await getLyrics(lastPlayed.items[0].track.artists[0].name, lastPlayed.items[0].track.name);
+    return { 
+      title: lastPlayed.items[0].track.name,
+      artist: lastPlayed.items[0].track.artists[0].name,
+      album: lastPlayed.items[0].track.album.name, 
+      coverUrl: lastPlayed.items[0].track.album.images[0].url,
+      lyrics: lyrics,
+    }
+  }
   return { 
-    title: lastPlayed.items[0].track.name,
-    artist: lastPlayed.items[0].track.artists[0].name,
-    album: lastPlayed.items[0].track.album.name, 
-    coverUrl: lastPlayed.items[0].track.album.images[0].url,
+    title: "",
+    artist: "",
+    album: "", 
+    coverUrl: "",
+    lyrics: [],
   }
 }
