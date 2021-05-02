@@ -30,16 +30,22 @@ function App() {
   useEffect(() => {
     async function getInitialDatat() {
       const userData = await getUser();
-      setUser({...user, name: userData.name, avatarUrl: userData.avatar});
-      const songData = await getNowPlaying();
-      setSong({
-        ...song, 
-        title: songData.title,
-        artist: songData.artist,
-        album: songData.album,
-        coverUrl: songData.coverUrl,
-        lyrics: songData.lyrics
-      })
+      setUser(prevUser => ({
+        ...prevUser,
+        name: userData.name,
+        avatarUrl: userData.avatar
+      }));
+      if (userData.name) {
+        const songData = await getNowPlaying();
+        setSong(prevSong => ({
+          ...prevSong, 
+          title: songData.title,
+          artist: songData.artist,
+          album: songData.album,
+          coverUrl: songData.coverUrl,
+          lyrics: songData.lyrics
+        }));
+      }
     }
     getInitialDatat();
   }, []);

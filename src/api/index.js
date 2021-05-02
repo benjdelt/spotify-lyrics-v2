@@ -28,11 +28,29 @@ if (token) {
 }
 
 export const getUser = async () => {
-  const response = await spotifyApi.getMe();
-  return {
-    name: response.display_name, 
-    avatar: response.images[0].url
-  };
+  const defaultResponse = {
+    name: "",
+    avatarUrl: "",
+    error: "",
+  }
+  try {
+    const token = spotifyApi.getAccessToken();
+    if (token) {
+      const response = await spotifyApi.getMe();
+      return {
+        name: response.display_name, 
+        avatar: response.images[0].url,
+        error: defaultResponse.error,
+      };
+    }
+    return defaultResponse;
+  } catch (error) {
+    return {
+      name: defaultResponse.name,
+      avatarUrl: defaultResponse.avatarUrl,
+      error
+    }
+  }
 }
 
 const getLyrics = async (artist, title) => {
