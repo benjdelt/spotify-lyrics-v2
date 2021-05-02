@@ -25,18 +25,7 @@ function App() {
   };
 
   const [user, setUser] = useState(defaultUser);
-
   const [song, setSong] = useState(defaultSong);
-
-  // const [state, setState] = useState({
-  //   username: "",
-  //   avatarUrl: "",
-  //   title: "",
-  //   artist: "",
-  //   album: "",
-  //   coverUrl: "",
-  //   lyrics: [],
-  // });
 
   useEffect(() => {
     async function getInitialDatat() {
