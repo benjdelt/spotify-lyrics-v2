@@ -1,0 +1,39 @@
+.profile {
+  display: flex;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+}
+
+.login {
+  color: #fff;
+  justify-content: center;
+  padding: 11px 44px;
+  border: 2px solid #fff;
+  border-radius: 500px;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: center;
+  -webkit-font-feature-settings: "c2sc";
+  font-feature-settings: "c2sc";
+  font-variant: small-caps;
+}
+
+.login:hover, .login:focus {
+  -webkit-transform: scale(1.06);
+  transform: scale(1.06);
+  outline: none;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 2em;
+  border-radius: 50%;
+  margin-right: .5em;
+}
+

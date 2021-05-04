@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
 import Dropdown from './Dropdown';
-
+import '../styles/Profile.css';
 
 function Profile({user, logout}) {
 
