@@ -1,12 +1,13 @@
-import Layout from './components/Layout';
-import Nav from './components/Nav';
-import Dropdown from './components/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Suspense, useEffect, useState } from 'react';
 
 import { getUser, getNowPlaying } from './api';
+
+import Layout from './components/Layout';
+import Nav from './components/Nav';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
     coverUrl: "",
     lyrics: [],
   };
+
+  const { t } = useTranslation();
 
   const [user, setUser] = useState(defaultUser);
   const [song, setSong] = useState(defaultSong);
@@ -50,8 +53,6 @@ function App() {
     getInitialDatat();
   }, []);
 
-  const { t } = useTranslation();
-
   const logout = () => {
     window.location.hash = "";
     setUser(defaultUser);
@@ -61,20 +62,7 @@ function App() {
   return (
     <Layout nav={<Nav />}>
       <>
-        <section className="profile">
-          {user.name ?
-              <Dropdown options={[t('user.logout')]} optionHandler={logout}>
-                <>
-                  <img src={user.avatarUrl} alt="avatar" className="avatar"/>
-                  <span className="user text">
-                    {user.name}
-                  </span>
-                </>
-              </Dropdown>
-            :
-              <a href="/.netlify/functions/login" className="login">{ t('login.button') }</a>
-          }
-        </section>
+        <Profile user={user} logout={logout} />
         {user.name ? (
           <section className="song">
             <header className="song-header">
