@@ -5,7 +5,7 @@ import '../styles/Profile.css';
 function Profile({user, logout}) {
 
   const { t } = useTranslation();
-  console.log(user)
+
   return (
     <section className="profile">
       {user.name ?
