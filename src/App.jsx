@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from 'react-i18next';
 import { Suspense, useEffect, useState } from 'react';
 
 import { getUser, getNowPlaying } from './api';
@@ -9,6 +8,7 @@ import Layout from './components/Layout';
 import Nav from './components/Nav';
 import Profile from './components/Profile';
 import Song from './components/Song';
+import Disclaimer from './components/Disclaimer';
 
 
 function App() {
@@ -25,8 +25,6 @@ function App() {
     coverUrl: "",
     lyrics: [],
   };
-
-  const { t } = useTranslation();
 
   const [user, setUser] = useState(defaultUser);
   const [song, setSong] = useState(defaultSong);
@@ -67,18 +65,7 @@ function App() {
         {user.name ? (
           <Song song={song} />
         ) : (
-          <section className="disclaimer">
-            <h2>{ t('disclaimer.header') }</h2>
-            <p>
-              { t('disclaimer.p1') }
-            </p>
-            <p>
-              { t('disclaimer.p2') }
-            </p>
-            <p>
-                { t('disclaimer.p3') }
-            </p>
-          </section>
+          <Disclaimer />
         )}
       </>
     </Layout>

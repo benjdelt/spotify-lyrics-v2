@@ -35,11 +35,6 @@ a {
 
 /* Main  */
 
-.disclaimer {
-  width: 40vw;
-  margin-top: 60px;
-}
-
 .loading {
   margin: 3em;
 }
@@ -59,11 +54,5 @@ a {
 @media (max-width: 732px) {
   .menu-text {
     display: none;
-  }
-}
-
-@media (max-width: 490px) {
-  .disclaimer {
-    width: 60vw;
   }
 }
