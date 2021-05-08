@@ -35,7 +35,9 @@ function App() {
   const [loading, setLoading] = useState(defaultLoading);
 
   useEffect(() => {
+    setLoading({user: false, song: false});
     async function getInitialDatat() {
+      setLoading({user: true, song: true});
       const userData = await getUser();
       setUser(prevUser => ({
         ...prevUser,
@@ -56,11 +58,11 @@ function App() {
           coverUrl: songData.coverUrl,
           lyrics: songData.lyrics,
         }));
-        setLoading(prevLoading => ({
-          ...prevLoading,
-          song: false,
-        }));
       }
+      setLoading(prevLoading => ({
+        ...prevLoading,
+        song: false,
+      }));
     }
     getInitialDatat();
   }, []);
