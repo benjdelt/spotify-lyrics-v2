@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Suspense, useEffect, useState } from 'react';
 
 import { getUser, getNowPlaying } from './api';
@@ -9,13 +7,14 @@ import Nav from './components/Nav';
 import Profile from './components/Profile';
 import Song from './components/Song';
 import Disclaimer from './components/Disclaimer';
+import Loader from './components/Loader';
 
 
 function App() {
 
   const defaultUser = {
     name: "",
-    avatarUrl: ""
+    avatarUrl: "",
   };
 
   const defaultSong = {
@@ -26,8 +25,14 @@ function App() {
     lyrics: [],
   };
 
+  const defaultLoading = {
+    user: true,
+    song: true,
+  };
+
   const [user, setUser] = useState(defaultUser);
   const [song, setSong] = useState(defaultSong);
+  const [loading, setLoading] = useState(defaultLoading);
 
   useEffect(() => {
     async function getInitialDatat() {
@@ -35,7 +40,11 @@ function App() {
       setUser(prevUser => ({
         ...prevUser,
         name: userData.name,
-        avatarUrl: userData.avatar
+        avatarUrl: userData.avatar,
+      }));
+      setLoading(prevLoading => ({
+        ...prevLoading,
+        user: false,
       }));
       if (userData.name) {
         const songData = await getNowPlaying();
@@ -45,7 +54,11 @@ function App() {
           artist: songData.artist,
           album: songData.album,
           coverUrl: songData.coverUrl,
-          lyrics: songData.lyrics
+          lyrics: songData.lyrics,
+        }));
+        setLoading(prevLoading => ({
+          ...prevLoading,
+          song: false,
         }));
       }
     }
@@ -56,35 +69,40 @@ function App() {
     window.location.hash = "";
     setUser(defaultUser);
     setSong(defaultSong);
+    setLoading({
+      user: false,
+      song: false,
+    })
   }
 
   return (
     <Layout nav={<Nav />}>
       <>
-        <Profile user={user} logout={logout} />
-        {user.name ? (
-          <Song song={song} />
-        ) : (
-          <Disclaimer />
-        )}
+        <Profile user={user} loading={loading.user} logout={logout} />
+        {loading.song ? (
+          <Loader />
+        ) : (  
+          user.name ? (
+            <Song song={song} />
+          ) : (
+            <Disclaimer />
+        ))}
       </>
     </Layout>
   )
 }
 
-function Loader() {
+function LoadingPage() {
   return (
     <Layout nav="" >
-      <section className="loading">
-        <FontAwesomeIcon icon={faSpinner} pulse />
-      </section>
+      <Loader />
     </Layout>
   )
 }
 
 export default function Page() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<LoadingPage />}>
       <App />
     </Suspense>
   )
