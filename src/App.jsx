@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getUser, getNowPlaying, getInitialSong } from './api';
+import { errorTypes, emptyUser, emptySong, defaultLoading } from './utils';
 
 import Layout from './components/Layout';
 import Error from './components/Error';
@@ -14,28 +15,10 @@ import Loader from './components/Loader';
 
 function App() {
 
-  const defaultUser = {
-    name: "",
-    avatarUrl: "",
-  };
-
-  const defaultSong = {
-    title: "",
-    artist: "",
-    album: "",
-    coverUrl: "",
-    lyrics: [],
-  };
-
-  const defaultLoading = {
-    user: true,
-    song: true,
-  };
-
   const { t } = useTranslation();
 
-  const [user, setUser] = useState(defaultUser);
-  const [song, setSong] = useState(defaultSong);
+  const [user, setUser] = useState(emptyUser);
+  const [song, setSong] = useState(emptySong);
   const [loading, setLoading] = useState(defaultLoading);
   const [error, setError] = useState({type: "", message: ""});
 
@@ -65,7 +48,7 @@ function App() {
         }));
         if (!songData.lyrics.length) {
           setError({
-            type: "noLyricsFound",
+            type: errorTypes.noLyricsFound,
             message: t('error.noLyricsFound'),
           });
         }
@@ -85,7 +68,7 @@ function App() {
       setSong(nowPlaying);
     } else {
       setError({
-        type:"noCurrentlyPlaying",
+        type: errorTypes.noCurrentlyPlaying,
         message: t('error.noCurrentlyPlaying'),
       });
     }
@@ -94,8 +77,8 @@ function App() {
 
   const logout = () => {
     window.location.hash = "";
-    setUser(defaultUser);
-    setSong(defaultSong);
+    setUser(emptyUser);
+    setSong(emptySong);
     setLoading({
       user: false,
       song: false,
@@ -109,7 +92,7 @@ function App() {
         {loading.song ? (
           <Loader />
         ) : (
-          error.type === "noCurrentlyPlaying" ? (
+          error.type === errorTypes.noCurrentlyPlaying ? (
             <Error error={error.message} />
           ) : ( 
             user.name ? (

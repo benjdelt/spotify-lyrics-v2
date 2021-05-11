@@ -1,15 +1,9 @@
 import axios from 'axios';
 import SpotifyWebApi from 'spotify-web-api-js';
 
-const spotifyApi = new SpotifyWebApi();
+import { emptyUser, emptySong } from '../utils/';
 
-const emptySong = { 
-  title: "",
-  artist: "",
-  album: "", 
-  coverUrl: "",
-  lyrics: [],
-};
+const spotifyApi = new SpotifyWebApi();
 
 const getHashParams = (location = window.location) => {
   const q = location.hash.substring(2);
@@ -36,11 +30,6 @@ if (token) {
 }
 
 export const getUser = async () => {
-  const defaultResponse = {
-    name: "",
-    avatarUrl: "",
-    error: "",
-  }
   try {
     const token = spotifyApi.getAccessToken();
     if (token) {
@@ -48,16 +37,11 @@ export const getUser = async () => {
       return {
         name: response.display_name, 
         avatar: response.images[0].url,
-        error: defaultResponse.error,
       };
     }
-    return defaultResponse;
+    return emptyUser;
   } catch (error) {
-    return {
-      name: defaultResponse.name,
-      avatarUrl: defaultResponse.avatarUrl,
-      error
-    }
+    return emptyUser;
   }
 }
 
