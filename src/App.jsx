@@ -55,7 +55,6 @@ function App() {
       }));
       if (userData.name) {
         const songData = await getInitialSong();
-        console.log(songData.lyrics)
         setSong(prevSong => ({
           ...prevSong, 
           title: songData.title,
@@ -102,7 +101,7 @@ function App() {
       song: false,
     })
   }
-  console.log(error.message)
+
   return (
     <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} />}>
       <>
