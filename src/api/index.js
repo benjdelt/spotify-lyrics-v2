@@ -62,8 +62,12 @@ export const getUser = async () => {
 }
 
 const getLyrics = async (artist, title) => {
-  const lyrics = await axios.get(`/.netlify/functions/lyrics?artist=${artist}&title=${title}`);
-  return lyrics.data.split("\n");
+  try {
+    const lyrics = await axios.get(`/.netlify/functions/lyrics?artist=${artist}&title=${title}`);
+    return lyrics.data.split("\n");
+  } catch (error) {
+    return [error];
+  }
 }
 
 export const getNowPlaying = async () => {
