@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Dropdown.css';
@@ -56,7 +56,7 @@ function Dropdown(props) {
       <div className="dropdown-menu" style={styles} ref={wrapperRef}>
         {props.options.map(option => (
           <div key={option} className="dropdown-option" onClick={optionHandler}>
-            <span className="option-text">{option}</span>
+            <span className="dropdown-option-text">{option}</span>
           </div>
         ))}
       </div>

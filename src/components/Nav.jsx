@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Dropdown from './Dropdown';
+import TrackHistoryDrawer from './TrackHistoryDrawer';
 import '../styles/Nav.css';
 
 
@@ -28,10 +29,10 @@ function Nav({ setToCurrentlyPlaying }) {
           </button>
         </li>
         <li>
-          <button>
+          <TrackHistoryDrawer options={["song1", "song2"]} >
             <FontAwesomeIcon icon={faHistory} />&nbsp;
             <span className="menu-text">{ t('nav.trackHistory') }</span>
-          </button>
+          </TrackHistoryDrawer>
         </li>
         <li>
           <a href="https://github.com/benjdelt/spotify-lyrics-v2" target="_blank" rel="noopener noreferrer">

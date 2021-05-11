@@ -1,0 +1,68 @@
+.drawer-parent {
+  height: 2em;
+}
+
+.drawer-parent:hover, .drawer-parent:focus {
+  text-decoration: none;
+  color: #b3b3b3;
+}
+
+.drawer-label:hover {
+  color: #fff;
+}
+
+.drawer-label {
+  display: flex;
+  align-items: center;
+}
+
+.drawer-menu {
+  background-color: #1c1c1c;
+  margin: .2em;
+  padding: .5em; 
+  position: relative;
+  left: 15em;
+  top: -8em;
+  height: 100vh;
+}
+
+.drawer-option {
+  padding: .2em;
+  cursor: pointer;
+}
+
+.drawer-option:hover, .drawer-option:focus {
+  background-color: #3e3e3e;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .drawer-menu {
+    left: 14em;
+  }
+}
+
+@media (max-width: 860px) {
+  .drawer-label {
+    display: initial;
+    align-items: initial;
+  }
+
+  .drawer-menu {
+    display: block;
+    position: fixed;
+    left: 0em;
+    top: 0em;
+    height: 87vh;
+  }
+
+  .option-text {
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 732px) {
+  .option-text {
+    font-size: .85rem;
+  }
+}

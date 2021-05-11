@@ -33,13 +33,13 @@
 }
 
 @media (max-width: 860px) {
-  .option-text {
+  .dropdown-option-text {
     font-size: .75rem;
   }
 }
 
 @media (max-width: 732px) {
-  .option-text {
+  .dropdown-option-text {
     font-size: .85rem;
   }
 }
