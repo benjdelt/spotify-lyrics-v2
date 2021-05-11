@@ -16,5 +16,9 @@
   },
   "user": {
     "logout": "Déconnexion"
+  },
+  "error" : {
+    "noCurrentlyPlaying": "Aucune piste n'est en cours de lecture sur ce compte Spotify",
+    "noLyricsFound": "Paroles indisponnibles pour ce morceau"
   }
 }

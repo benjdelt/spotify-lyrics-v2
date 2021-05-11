@@ -1,6 +1,7 @@
+import Error from './Error';
 import '../styles/Song.css';
 
-function Song({song}) {
+function Song({song, error}) {
 
   return (
     <section className="song">
@@ -12,11 +13,15 @@ function Song({song}) {
           <p>{song.album}</p>
         </section>
       </header>
-      <section className="song-main">
-        <p>
-          {song.lyrics.map((lyric, ind) => <span key={ind} >{lyric}<br /></span>)}
-        </p>
-      </section>
+      {error.type === "noLyricsFound" ? (
+        <Error error={error.message} />
+      ) : (
+        <section className="song-main">
+          <p>
+            {song.lyrics.map((lyric, ind) => <span key={ind} >{lyric}<br /></span>)}
+          </p>
+        </section>
+      )}
     </section>
   );
 }

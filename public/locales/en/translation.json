@@ -16,5 +16,9 @@
   },
   "user": {
     "logout": "Logout"
+  },
+  "error" : {
+    "noCurrentlyPlaying": "No track is currently playing on this Spotify account",
+    "noLyricsFound": "Lyrics unavailable for this track"
   }
 }

@@ -1,8 +1,10 @@
 import { Suspense, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { getUser, getNowPlaying, getInitialSong } from './api';
 
 import Layout from './components/Layout';
+import Error from './components/Error';
 import Nav from './components/Nav';
 import Profile from './components/Profile';
 import Song from './components/Song';
@@ -30,10 +32,12 @@ function App() {
     song: true,
   };
 
+  const { t } = useTranslation();
+
   const [user, setUser] = useState(defaultUser);
   const [song, setSong] = useState(defaultSong);
   const [loading, setLoading] = useState(defaultLoading);
-  const [error, setError] = useState("");
+  const [error, setError] = useState({type: "", message: ""});
 
   useEffect(() => {
     setLoading({user: false, song: false});
@@ -51,6 +55,7 @@ function App() {
       }));
       if (userData.name) {
         const songData = await getInitialSong();
+        console.log(songData.lyrics)
         setSong(prevSong => ({
           ...prevSong, 
           title: songData.title,
@@ -59,6 +64,12 @@ function App() {
           coverUrl: songData.coverUrl,
           lyrics: songData.lyrics,
         }));
+        if (!songData.lyrics.length) {
+          setError({
+            type: "noLyricsFound",
+            message: t('error.noLyricsFound'),
+          });
+        }
       }
       setLoading(prevLoading => ({
         ...prevLoading,
@@ -74,7 +85,10 @@ function App() {
     if (nowPlaying.title) {
       setSong(nowPlaying);
     } else {
-      setError("No song currently playing");
+      setError({
+        type:"noCurrentlyPlaying",
+        message: t('error.noCurrentlyPlaying'),
+      });
     }
     setLoading({...loading, song: false});
   }
@@ -88,8 +102,7 @@ function App() {
       song: false,
     })
   }
-  console.log(song)
-  console.log(error)
+  console.log(error.message)
   return (
     <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} />}>
       <>
@@ -97,13 +110,11 @@ function App() {
         {loading.song ? (
           <Loader />
         ) : (
-          error ? (
-            <section className="error">
-              <p>{error}</p>
-            </section>
+          error.type === "noCurrentlyPlaying" ? (
+            <Error error={error.message} />
           ) : ( 
             user.name ? (
-              <Song song={song} />
+              <Song song={song} error={error}/>
             ) : (
               <Disclaimer />
           )))}
