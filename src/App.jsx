@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { getUser, getNowPlaying, getInitialSong } from './api';
 import { errorTypes, emptyUser, emptySong, defaultLoading } from './utils';
@@ -15,12 +14,10 @@ import Loader from './components/Loader';
 
 function App() {
 
-  const { t } = useTranslation();
-
   const [user, setUser] = useState(emptyUser);
   const [song, setSong] = useState(emptySong);
   const [loading, setLoading] = useState(defaultLoading);
-  const [error, setError] = useState({type: "", message: ""});
+  const [errorType, setErrorType] = useState("");
 
   useEffect(() => {
     setLoading({user: false, song: false});
@@ -47,10 +44,7 @@ function App() {
           lyrics: songData.lyrics,
         }));
         if (!songData.lyrics.length) {
-          setError({
-            type: errorTypes.noLyricsFound,
-            message: t('error.noLyricsFound'),
-          });
+          setErrorType(errorTypes.noLyricsFound);
         }
       }
       setLoading(prevLoading => ({
@@ -67,10 +61,7 @@ function App() {
     if (nowPlaying.title) {
       setSong(nowPlaying);
     } else {
-      setError({
-        type: errorTypes.noCurrentlyPlaying,
-        message: t('error.noCurrentlyPlaying'),
-      });
+      setErrorType(errorTypes.noCurrentlyPlaying);
     }
     setLoading({...loading, song: false});
   }
@@ -92,11 +83,11 @@ function App() {
         {loading.song ? (
           <Loader />
         ) : (
-          error.type === errorTypes.noCurrentlyPlaying ? (
-            <Error error={error.message} />
+          errorType === errorTypes.noCurrentlyPlaying ? (
+            <Error errorType={errorType} />
           ) : ( 
             user.name ? (
-              <Song song={song} error={error}/>
+              <Song song={song} errorType={errorType}/>
             ) : (
               <Disclaimer />
           )))}

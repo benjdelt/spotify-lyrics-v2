@@ -1,7 +1,8 @@
 import Error from './Error';
+import { errorTypes } from '../utils';
 import '../styles/Song.css';
 
-function Song({song, error}) {
+function Song({song, errorType}) {
 
   return (
     <section className="song">
@@ -13,8 +14,8 @@ function Song({song, error}) {
           <p>{song.album}</p>
         </section>
       </header>
-      {error.type === "noLyricsFound" ? (
-        <Error error={error.message} />
+      {errorType === errorTypes.noLyricsFound ? (
+        <Error errorType={errorType} />
       ) : (
         <section className="song-main">
           <p>
