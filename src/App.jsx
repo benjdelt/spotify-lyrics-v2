@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser, getNowPlaying } from './api';
+import { getUser, getNowPlaying, getInitialSong } from './api';
 
 import Layout from './components/Layout';
 import Nav from './components/Nav';
@@ -33,10 +33,11 @@ function App() {
   const [user, setUser] = useState(defaultUser);
   const [song, setSong] = useState(defaultSong);
   const [loading, setLoading] = useState(defaultLoading);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setLoading({user: false, song: false});
-    async function getInitialDatat() {
+    async function setInitialDatat() {
       setLoading({user: true, song: true});
       const userData = await getUser();
       setUser(prevUser => ({
@@ -49,7 +50,7 @@ function App() {
         user: false,
       }));
       if (userData.name) {
-        const songData = await getNowPlaying();
+        const songData = await getInitialSong();
         setSong(prevSong => ({
           ...prevSong, 
           title: songData.title,
@@ -64,8 +65,19 @@ function App() {
         song: false,
       }));
     }
-    getInitialDatat();
+    setInitialDatat();
   }, []);
+
+  const setToCurrentlyPlaying = async () => {
+    setLoading({...loading, song: true});
+    const nowPlaying = await getNowPlaying();
+    if (nowPlaying.title) {
+      setSong(nowPlaying);
+    } else {
+      setError("No song currently playing");
+    }
+    setLoading({...loading, song: false});
+  }
 
   const logout = () => {
     window.location.hash = "";
@@ -76,19 +88,25 @@ function App() {
       song: false,
     })
   }
-
+  console.log(song)
+  console.log(error)
   return (
-    <Layout nav={<Nav />}>
+    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} />}>
       <>
         <Profile user={user} loading={loading.user} logout={logout} />
         {loading.song ? (
           <Loader />
-        ) : (  
-          user.name ? (
-            <Song song={song} />
-          ) : (
-            <Disclaimer />
-        ))}
+        ) : (
+          error ? (
+            <section className="error">
+              <p>{error}</p>
+            </section>
+          ) : ( 
+            user.name ? (
+              <Song song={song} />
+            ) : (
+              <Disclaimer />
+          )))}
       </>
     </Layout>
   )

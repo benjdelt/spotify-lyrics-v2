@@ -6,7 +6,7 @@ import Dropdown from './Dropdown';
 import '../styles/Nav.css';
 
 
-function Nav() {
+function Nav({ setToCurrentlyPlaying }) {
 
   const { t, i18n } = useTranslation();
 
@@ -22,7 +22,7 @@ function Nav() {
     <nav>
       <ul>
         <li>
-          <button>
+          <button onClick={setToCurrentlyPlaying} >
             <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
             <span className="menu-text">{ t('nav.currentlyPlaying') }</span>
           </button>

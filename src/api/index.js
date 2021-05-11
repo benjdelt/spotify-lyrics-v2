@@ -3,6 +3,14 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
 
+const emptySong = { 
+  title: "",
+  artist: "",
+  album: "", 
+  coverUrl: "",
+  lyrics: [],
+};
+
 const getHashParams = (location = window.location) => {
   const q = location.hash.substring(2);
 
@@ -68,8 +76,12 @@ export const getNowPlaying = async () => {
       album: nowPlaying.item.album.name, 
       coverUrl: nowPlaying.item.album.images[0].url,
       lyrics: lyrics,
-    }
+    };
   }
+  return emptySong;
+}
+
+const getLastPlayed = async () => {
   const lastPlayed = await spotifyApi.getMyRecentlyPlayedTracks({"limit": 1})
   if (lastPlayed.items.length > 0) {
     const lyrics = await getLyrics(lastPlayed.items[0].track.artists[0].name, lastPlayed.items[0].track.name);
@@ -79,13 +91,19 @@ export const getNowPlaying = async () => {
       album: lastPlayed.items[0].track.album.name, 
       coverUrl: lastPlayed.items[0].track.album.images[0].url,
       lyrics: lyrics,
-    }
+    };
   }
-  return { 
-    title: "",
-    artist: "",
-    album: "", 
-    coverUrl: "",
-    lyrics: [],
+  return emptySong;
+}
+
+export const getInitialSong = async () => {
+  const nowPlaying = await getNowPlaying();
+  if (nowPlaying.title) {
+    return nowPlaying;
   }
+  const lastPlayed = await getLastPlayed();
+  if (lastPlayed.title) {
+    return lastPlayed;
+  }
+  return emptySong;
 }
