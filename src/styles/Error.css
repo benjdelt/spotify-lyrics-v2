@@ -5,3 +5,7 @@
   color: #fff;
   font-weight: 800;
 }
+
+.error p {
+  text-align: center;
+}
