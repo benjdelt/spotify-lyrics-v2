@@ -83,13 +83,13 @@ function App() {
         {loading.song ? (
           <Loader />
         ) : (
-          errorType === errorTypes.noCurrentlyPlaying ? (
-            <Error errorType={errorType} />
+          !user.name ? (
+            <Disclaimer />
           ) : ( 
-            user.name ? (
-              <Song song={song} errorType={errorType}/>
+            errorType === errorTypes.noCurrentlyPlaying ? (
+              <Error errorType={errorType} />
             ) : (
-              <Disclaimer />
+              <Song song={song} errorType={errorType} />
           )))}
       </>
     </Layout>
