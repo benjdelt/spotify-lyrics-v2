@@ -4,10 +4,11 @@ import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-sv
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Dropdown, DropdownMenuItem } from './Dropdown';
 import { TrackHistoryDrawer, DrawerMenuItem } from './TrackHistoryDrawer';
+import Loader from './Loader';
 import '../styles/Nav.css';
 
 
-function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack }) {
+function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack, loadingHistory }) {
 
   const { t, i18n } = useTranslation();
 
@@ -40,12 +41,16 @@ function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack }) {
         </li>
         <li>
           <TrackHistoryDrawer options={trackHistory} label={<HistoryLabel />} >
-            {trackHistory.map((track, ind) => (
-              <DrawerMenuItem key={ind} handleClick={() => setToHistoryTrack(track)}>
-                <img src={track.coverUrl} alt="mini-cover"/> 
-                &nbsp;{track.artist} - {track.title}
-              </DrawerMenuItem>
-            ))}
+            {loadingHistory ? (
+              <Loader />
+            ) : (
+              trackHistory.map((track, ind) => (
+                <DrawerMenuItem key={ind} handleClick={() => setToHistoryTrack(track)}>
+                  <img src={track.coverUrl} alt="mini-cover"/> 
+                  &nbsp;{track.artist} - {track.title}
+                </DrawerMenuItem>
+              ))
+            )}
           </TrackHistoryDrawer>
         </li>
         <li>

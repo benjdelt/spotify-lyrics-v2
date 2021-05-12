@@ -19,6 +19,7 @@ const emptySong = {
 const defaultLoading = {
   user: true,
   song: true,
+  history: true,
 };
 
 export {

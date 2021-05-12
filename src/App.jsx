@@ -47,9 +47,16 @@ function App() {
         if (!songData.lyrics.length) {
           setErrorType(errorTypes.noLyricsFound);
         }
-
+        setLoading(prevLoading => ({
+          ...prevLoading,
+          history: true,
+        }));
         const trackHistory = await getTrackHistory();
         setTrackHistory(trackHistory);
+        setLoading(prevLoading => ({
+          ...prevLoading,
+          history: false,
+        }));
       }
       setLoading(prevLoading => ({
         ...prevLoading,
@@ -96,14 +103,16 @@ function App() {
     window.location.hash = "";
     setUser(emptyUser);
     setSong(emptySong);
+    setTrackHistory([]);
     setLoading({
       user: false,
       song: false,
+      history: false,
     })
   }
 
   return (
-    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} setToHistoryTrack={setToHistoryTrack} />}>
+    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} setToHistoryTrack={setToHistoryTrack} loadingHistory={loading.history} />}>
       <>
         <Profile user={user} loading={loading.user} logout={logout} />
         {loading.song ? (
