@@ -75,6 +75,11 @@
 }
 
 @media (max-width: 732px) {
+  .drawer-menu {
+    top: 3em;
+    height: 80vh;
+  }
+
   .drawer-option-text {
     font-size: .85rem;
   }
