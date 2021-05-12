@@ -95,3 +95,16 @@ export const getInitialSong = async () => {
   }
   return emptySong;
 }
+
+export const getTrackHistory = async (limit=25) => {
+  const lastPlayed = await spotifyApi.getMyRecentlyPlayedTracks({"limit": limit})
+  if (lastPlayed.items.length > 0) {
+    return lastPlayed.items.map(item => ({ 
+      title: item.track.name,
+      artist: item.track.artists[0].name,
+      album: item.track.album.name, 
+      coverUrl: item.track.album.images[0].url,
+    }));
+  }
+  return [];
+}
