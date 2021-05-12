@@ -1,7 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Children } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Dropdown.css';
+
+
+function DropdownMenuItem(props) {
+
+  const handleClick = () => {
+    props.handleClick();
+    props.openHandler();
+  }
+
+  return (
+    <div key={props.key} className="dropdown-option" onClick={handleClick} >
+      <span className="dropdown-option-text">{props.children}</span>
+    </div>
+  );
+}
 
 function Dropdown(props) {
 
@@ -27,9 +42,7 @@ function Dropdown(props) {
     }
   };
 
-  const optionHandler = event => {
-    event.preventDefault();
-    props.optionHandler(event);
+  const openHandler = () => {
     setOpen(false);
   };
 
@@ -37,32 +50,24 @@ function Dropdown(props) {
   const openIcon = props.up ? faCaretDown : faCaretUp;
 
   const styles = props.up ? {
-    // display: open ? "block" : "none",
     visibility: open ? "visible" : "hidden",
     position: "relative",
     bottom: "6.5em",
   } : {
     visibility: open ? "visible" : "hidden",
-    // display: open ? "block" : "none",
   };
 
   return (
     <div className="dropdown-parent">
       <button onClick={handleClick} className="dropdown-label">
-        {props.children} &nbsp;
+        {props.label} &nbsp;
         <FontAwesomeIcon icon={open ? openIcon : closedIcon} />
       </button>
-      {/* {open && */}
       <div className="dropdown-menu" style={styles} ref={wrapperRef}>
-        {props.options.map(option => (
-          <div key={option} className="dropdown-option" onClick={optionHandler}>
-            <span className="dropdown-option-text">{option}</span>
-          </div>
-        ))}
+        {Children.map(props.children, child => React.cloneElement(child, { openHandler }))}
       </div>
-      {/* } */}
     </div>
   )
 }
 
-export default Dropdown;
+export { Dropdown, DropdownMenuItem };

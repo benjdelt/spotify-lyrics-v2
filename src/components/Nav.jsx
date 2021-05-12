@@ -2,22 +2,23 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import Dropdown from './Dropdown';
+import { Dropdown, DropdownMenuItem } from './Dropdown';
 import TrackHistoryDrawer from './TrackHistoryDrawer';
 import '../styles/Nav.css';
 
 
-function Nav({ setToCurrentlyPlaying }) {
+function Nav({ setToCurrentlyPlaying, trackHistory }) {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = event => {
-    const languages = {
-      English: "en",
-      Français: "fr",
-    };
-    i18n.changeLanguage(languages[event.target.innerText]);
-  };
+  function LanguageLabel() {
+    return (
+      <span>
+        <FontAwesomeIcon icon={faGlobeEurope} />&nbsp;
+        <span className="menu-text">{ t('nav.language') }</span>
+      </span>
+    );
+  }
 
   return (
     <nav>
@@ -29,7 +30,7 @@ function Nav({ setToCurrentlyPlaying }) {
           </button>
         </li>
         <li>
-          <TrackHistoryDrawer options={["song1", "song2"]} >
+          <TrackHistoryDrawer options={trackHistory} >
             <FontAwesomeIcon icon={faHistory} />&nbsp;
             <span className="menu-text">{ t('nav.trackHistory') }</span>
           </TrackHistoryDrawer>
@@ -41,9 +42,9 @@ function Nav({ setToCurrentlyPlaying }) {
           </a>
         </li>
         <li className="language">
-          <Dropdown options={["English", "Français"]} up={true} optionHandler={changeLanguage}>
-            <FontAwesomeIcon icon={faGlobeEurope} />&nbsp;
-            <span className="menu-text">{ t('nav.language') }</span>
+          <Dropdown up={true} label={<LanguageLabel />} >
+              <DropdownMenuItem key={1} handleClick={() => i18n.changeLanguage("en")} >English</DropdownMenuItem>
+              <DropdownMenuItem key={2} handleClick={() => i18n.changeLanguage("fr")} >Français</DropdownMenuItem>
           </Dropdown>
         </li>
       </ul>          
