@@ -45,7 +45,7 @@ export const getUser = async () => {
   }
 }
 
-const getLyrics = async (artist, title) => {
+export const getLyrics = async (artist, title) => {
   try {
     const lyrics = await axios.get(`/.netlify/functions/lyrics?artist=${artist}&title=${title}`);
     return lyrics.data.split("\n");
@@ -99,7 +99,6 @@ export const getInitialSong = async () => {
 const filterDuplicateTracks = tracks => {
   const filteredTracks = [];
   const map = new Map();
-  console.log(tracks)
   for (let item of tracks.items) {
     if(!map.has(item.track.name)){
       map.set(item.track.name, true);

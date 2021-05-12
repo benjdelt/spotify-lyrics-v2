@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser, getNowPlaying, getInitialSong, getTrackHistory } from './api';
+import { getUser, getLyrics, getNowPlaying, getInitialSong, getTrackHistory } from './api';
 import { errorTypes, emptyUser, emptySong, defaultLoading } from './utils';
 
 import Layout from './components/Layout';
@@ -61,11 +61,33 @@ function App() {
 
   const setToCurrentlyPlaying = async () => {
     setLoading({...loading, song: true});
+    setErrorType("");
     const nowPlaying = await getNowPlaying();
     if (nowPlaying.title) {
       setSong(nowPlaying);
+      if (!nowPlaying.lyrics.length) {
+        setErrorType(errorTypes.noLyricsFound);
+      }
     } else {
       setErrorType(errorTypes.noCurrentlyPlaying);
+    }
+    setLoading({...loading, song: false});
+  }
+
+  const setToHistoryTrack = async track => {
+    setLoading({...loading, song: true});
+    setErrorType("");
+    const lyrics = await getLyrics(track.artist, track.title);
+    console.log(lyrics)
+    setSong({
+      title: track.title,
+      artist: track.artist,
+      album: track.album,
+      coverUrl: track.coverUrl,
+      lyrics: lyrics,
+    })
+    if (!lyrics.length) {
+      setErrorType(errorTypes.noLyricsFound);
     }
     setLoading({...loading, song: false});
   }
@@ -81,7 +103,7 @@ function App() {
   }
 
   return (
-    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} />}>
+    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} setToHistoryTrack={setToHistoryTrack} />}>
       <>
         <Profile user={user} loading={loading.user} logout={logout} />
         {loading.song ? (
