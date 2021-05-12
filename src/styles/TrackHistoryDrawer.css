@@ -22,10 +22,10 @@
   padding: .5em; 
   position: relative;
   left: 15em;
-  top: -8em;
+  top: -8.5em;
   height: 100vh;
   width: max-content;
-  z-index: 2;
+  overflow-y: auto;
 }
 
 .drawer-option {
