@@ -1,7 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Children } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import '../styles/TrackHistoryDrawer.css';
+
+function DrawerMenuItem(props) {
+  const handleClick = () => {
+    props.handleClick();
+    props.openHandler();
+  }
+
+  return (
+    <div key={props.key} className="drawer-option" onClick={handleClick} >
+      <span className="drawer-option-text">{props.children}</span>
+    </div>
+  );
+}
+
 
 function TrackHistoryDrawer(props) {
 
@@ -27,9 +41,7 @@ function TrackHistoryDrawer(props) {
     }
   };
 
-  const optionHandler = event => {
-    event.preventDefault();
-    props.optionHandler(event);
+  const openHandler = () => {
     setOpen(false);
   };
 
@@ -37,25 +49,20 @@ function TrackHistoryDrawer(props) {
   const openIcon = faCaretLeft;
 
   const styles = {
-    // visibility: open ? "visible" : "hidden",
     display: open ? "block" : "none",
   };
 
   return (
     <div className="drawer-parent">
       <button onClick={handleClick} className="drawer-label">
-        {props.children} &nbsp;
+        {props.label} &nbsp;
         <span className="menu-text"><FontAwesomeIcon icon={open ? openIcon : closedIcon} /></span>
       </button>
       <div className="drawer-menu" style={styles} ref={wrapperRef}>
-        {props.options.map(option => (
-          <div key={option} className="drawer-option" onClick={optionHandler}>
-            <span className="option-text">{option}</span>
-          </div>
-        ))}
+        {Children.map(props.children, child => React.cloneElement(child, { openHandler }))}
       </div>
     </div>
   )
 }
 
-export default TrackHistoryDrawer;
+export { TrackHistoryDrawer, DrawerMenuItem };

@@ -24,16 +24,29 @@
   left: 15em;
   top: -8em;
   height: 100vh;
+  width: max-content;
+  z-index: 2;
 }
 
 .drawer-option {
   padding: .2em;
   cursor: pointer;
+  font-size: .8em;
+}
+
+.drawer-option-text {
+  display: flex;
+  align-items: center;
+  padding: .1em;
 }
 
 .drawer-option:hover, .drawer-option:focus {
   background-color: #3e3e3e;
   color: #fff;
+}
+
+.drawer-option img {
+  width: 1.2em;
 }
 
 @media (max-width: 1024px) {
@@ -56,13 +69,13 @@
     height: 87vh;
   }
 
-  .option-text {
+  .drawer-option-text {
     font-size: .75rem;
   }
 }
 
 @media (max-width: 732px) {
-  .option-text {
+  .drawer-option-text {
     font-size: .85rem;
   }
 }

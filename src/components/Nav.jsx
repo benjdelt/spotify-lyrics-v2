@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeEurope, faVolumeUp, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Dropdown, DropdownMenuItem } from './Dropdown';
-import TrackHistoryDrawer from './TrackHistoryDrawer';
+import { TrackHistoryDrawer, DrawerMenuItem } from './TrackHistoryDrawer';
 import '../styles/Nav.css';
 
 
@@ -11,12 +11,21 @@ function Nav({ setToCurrentlyPlaying, trackHistory }) {
 
   const { t, i18n } = useTranslation();
 
+  function HistoryLabel() {
+    return (
+      <>
+        <FontAwesomeIcon icon={faHistory} />&nbsp;
+        <span className="menu-text">{ t('nav.trackHistory') }</span>
+      </>
+    )
+  }
+
   function LanguageLabel() {
     return (
-      <span>
+      <>
         <FontAwesomeIcon icon={faGlobeEurope} />&nbsp;
         <span className="menu-text">{ t('nav.language') }</span>
-      </span>
+      </>
     );
   }
 
@@ -30,9 +39,13 @@ function Nav({ setToCurrentlyPlaying, trackHistory }) {
           </button>
         </li>
         <li>
-          <TrackHistoryDrawer options={trackHistory} >
-            <FontAwesomeIcon icon={faHistory} />&nbsp;
-            <span className="menu-text">{ t('nav.trackHistory') }</span>
+          <TrackHistoryDrawer options={trackHistory} label={<HistoryLabel />} >
+            {trackHistory.map((track, ind) => (
+              <DrawerMenuItem key={ind} >
+                <img src={track.coverUrl} alt="mini-cover"/> 
+                &nbsp;{track.artist} - {track.title}
+              </DrawerMenuItem>
+            ))}
           </TrackHistoryDrawer>
         </li>
         <li>

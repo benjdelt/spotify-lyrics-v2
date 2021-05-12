@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser, getNowPlaying, getInitialSong } from './api';
+import { getUser, getNowPlaying, getInitialSong, getTrackHistory } from './api';
 import { errorTypes, emptyUser, emptySong, defaultLoading } from './utils';
 
 import Layout from './components/Layout';
@@ -16,6 +16,7 @@ function App() {
 
   const [user, setUser] = useState(emptyUser);
   const [song, setSong] = useState(emptySong);
+  const [trackHistory, setTrackHistory] = useState([]);
   const [loading, setLoading] = useState(defaultLoading);
   const [errorType, setErrorType] = useState("");
 
@@ -46,11 +47,14 @@ function App() {
         if (!songData.lyrics.length) {
           setErrorType(errorTypes.noLyricsFound);
         }
+
+        const trackHistory = await getTrackHistory();
+        setTrackHistory(trackHistory);
       }
       setLoading(prevLoading => ({
         ...prevLoading,
         song: false,
-      }));
+      }));     
     }
     setInitialDatat();
   }, []);
@@ -77,7 +81,7 @@ function App() {
   }
 
   return (
-    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} />}>
+    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} />}>
       <>
         <Profile user={user} loading={loading.user} logout={logout} />
         {loading.song ? (
