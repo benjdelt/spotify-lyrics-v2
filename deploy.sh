@@ -6,7 +6,6 @@
 # Preliminary Validations
 
 readonly production="production"
-readonly master="master"
 readonly origin="origin"
 
 function is_branch() {
@@ -17,13 +16,19 @@ function is_branch() {
     fi
 }
 
+if [ $# -eq 0 ]
+  then
+    echo "Error: no arguments supplied"
+    exit 1
+fi
+
 if [ ! -d .git ]
 then
     echo "Error: not in a git repo"
     exit 1
 fi
 
-is_branch $master
+is_branch $1
 is_branch $production
 
 if [ ! `git remote | egrep "^${origin}$"` ]
@@ -35,6 +40,6 @@ fi
 # Deployment Commands
 
 git checkout production
-git merge master production
+git merge $1 production
 git push origin production
-git checkout master
+git checkout $1
