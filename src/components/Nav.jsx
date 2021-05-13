@@ -39,7 +39,7 @@ function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack, loadingHi
             <span className="menu-text">{ t('nav.currentlyPlaying') }</span>
           </button>
         </li>
-        <li>
+        <li className="nav-track-history" >
           <TrackHistoryDrawer options={trackHistory} label={<HistoryLabel />} >
             {loadingHistory ? (
               <Loader />

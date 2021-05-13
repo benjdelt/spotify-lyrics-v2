@@ -24,6 +24,10 @@ nav ul li>*:focus, nav ul li>*:hover {
   color: #fff;;
 }
 
+nav ul .nav-track-history {
+  z-index: 1;
+}
+
 nav ul .language {
   position: absolute;
   bottom: 0;
