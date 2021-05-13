@@ -76,8 +76,7 @@
 
 @media (max-width: 732px) {
   .drawer-menu {
-    top: 3em;
-    height: 80vh;
+    height: 86vh;
   }
 
   .drawer-option-text {
