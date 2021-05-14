@@ -8,7 +8,13 @@ import Loader from './Loader';
 import '../styles/Nav.css';
 
 
-function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack, loadingHistory }) {
+function Nav({
+  loggedIn,
+  setToCurrentlyPlaying,
+  trackHistory,
+  setToHistoryTrack,
+  loadingHistory
+}) {
 
   const { t, i18n } = useTranslation();
 
@@ -33,26 +39,30 @@ function Nav({ setToCurrentlyPlaying, trackHistory, setToHistoryTrack, loadingHi
   return (
     <nav>
       <ul>
-        <li>
-          <button onClick={setToCurrentlyPlaying} >
-            <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
-            <span className="menu-text">{ t('nav.currentlyPlaying') }</span>
-          </button>
-        </li>
-        <li className="nav-track-history" >
-          <TrackHistoryDrawer options={trackHistory} label={<HistoryLabel />} >
-            {loadingHistory ? (
-              <Loader />
-            ) : (
-              trackHistory.map((track, ind) => (
-                <DrawerMenuItem key={ind} handleClick={() => setToHistoryTrack(track)}>
-                  <img src={track.coverUrl} alt="mini-cover"/> 
-                  &nbsp;{track.artist} - {track.title}
-                </DrawerMenuItem>
-              ))
-            )}
-          </TrackHistoryDrawer>
-        </li>
+        {loggedIn &&
+          <> 
+            <li>
+              <button onClick={setToCurrentlyPlaying} >
+                <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
+                <span className="menu-text">{ t('nav.currentlyPlaying') }</span>
+              </button>
+            </li>
+            <li className="nav-track-history" >
+              <TrackHistoryDrawer options={trackHistory} label={<HistoryLabel />} >
+                {loadingHistory ? (
+                  <Loader />
+                ) : (
+                  trackHistory.map((track, ind) => (
+                    <DrawerMenuItem key={ind} handleClick={() => setToHistoryTrack(track)}>
+                      <img src={track.coverUrl} alt="mini-cover"/> 
+                      &nbsp;{track.artist} - {track.title}
+                    </DrawerMenuItem>
+                  ))
+                )}
+              </TrackHistoryDrawer>
+            </li>
+          </>
+        }
         <li>
           <a href="https://github.com/benjdelt/spotify-lyrics-v2" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />&nbsp;

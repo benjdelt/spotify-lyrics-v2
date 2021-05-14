@@ -112,7 +112,15 @@ function App() {
   }
 
   return (
-    <Layout nav={<Nav setToCurrentlyPlaying={setToCurrentlyPlaying} trackHistory={trackHistory} setToHistoryTrack={setToHistoryTrack} loadingHistory={loading.history} />}>
+    <Layout 
+      nav={<Nav
+        loggedIn={!!user.name}
+        setToCurrentlyPlaying={setToCurrentlyPlaying}
+        trackHistory={trackHistory}
+        setToHistoryTrack={setToHistoryTrack}
+        loadingHistory={loading.history} 
+      />}
+    >
       <>
         <Profile user={user} loading={loading.user} logout={logout} />
         {loading.song ? (
