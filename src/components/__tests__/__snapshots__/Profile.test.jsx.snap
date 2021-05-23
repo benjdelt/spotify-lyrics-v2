@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="profile"
+  >
+    <a
+      class="login"
+      href="/.netlify/functions/login"
+    >
+      login.button
+    </a>
+  </section>
+</DocumentFragment>
+`;

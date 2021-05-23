@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="app-header"
+  >
+    <div
+      class="logo"
+    >
+      <h1>
+        <img
+          alt="logo"
+          src="inverted-logo.png"
+        />
+        <span
+          class="menu-text"
+        >
+          Spotify Lyrics
+        </span>
+      </h1>
+    </div>
+  </header>
+  <main
+    class="app-main"
+  />
+</DocumentFragment>
+`;

@@ -1,15 +1,17 @@
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUser, getLyrics, getNowPlaying, getInitialSong, getTrackHistory } from './api';
-import { errorTypes, emptyUser, emptySong, defaultLoading } from './utils';
+import { getUser, getLyrics, getNowPlaying, getInitialSong, getTrackHistory } from '../api';
+import { errorTypes, emptyUser, emptySong, defaultLoading } from '../utils';
 
-import Layout from './components/Layout';
-import Error from './components/Error';
-import Nav from './components/Nav';
-import Profile from './components/Profile';
-import Song from './components/Song';
-import Disclaimer from './components/Disclaimer';
-import Loader from './components/Loader';
+import Layout from './Layout';
+import Error from './Error';
+import Nav from './Nav';
+import Profile from './Profile';
+import Song from './Song';
+import Disclaimer from './Disclaimer';
+import Loader from './Loader';
+
+import '../styles/App.css';
 
 
 function App() {

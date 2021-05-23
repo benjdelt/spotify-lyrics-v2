@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="song"
+  >
+    <header
+      class="song-header"
+    >
+      <img
+        alt="cover"
+        class="cover"
+        src=""
+      />
+      <section
+        class="song-info"
+      >
+        <h2 />
+        <h5 />
+        <p />
+      </section>
+    </header>
+    <section
+      class="song-main"
+    >
+      <p />
+    </section>
+  </section>
+</DocumentFragment>
+`;

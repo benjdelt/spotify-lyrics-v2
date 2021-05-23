@@ -1,0 +1,38 @@
+
+li {
+  list-style: none;
+}
+
+button {
+  color: #b3b3b3;
+  background-color: transparent;
+  text-align: left;
+  padding: 0;
+  border-color: transparent;
+  border-width: 0;
+  border-style: unset;
+  font: unset;
+  cursor: pointer;
+}
+
+button:focus, a:focus {
+  outline: unset;
+}
+
+a {
+  color: #b3b3b3;
+}
+
+/* Media Queries */
+
+@media (max-width: 860px) {
+  .menu-text {
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 732px) {
+  .menu-text {
+    display: none;
+  }
+}
