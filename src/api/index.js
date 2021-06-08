@@ -5,7 +5,7 @@ import { emptyUser, emptySong } from '../utils/';
 
 const spotifyApi = new SpotifyWebApi();
 
-const getHashParams = (location = window.location) => {
+export const getHashParams = (location=window.location) => {
   const q = location.hash.substring(2);
 
   // if the substring is non-empty, split it up based on hashes
@@ -36,7 +36,7 @@ export const getUser = async () => {
       const response = await spotifyApi.getMe();
       return {
         name: response.display_name, 
-        avatar: response.images[0].url,
+        avatarUrl: response.images[0].url,
       };
     }
     return emptyUser;
@@ -69,7 +69,7 @@ export const getNowPlaying = async () => {
   return emptySong;
 }
 
-const getLastPlayed = async () => {
+export const getLastPlayed = async () => {
   const lastPlayed = await spotifyApi.getMyRecentlyPlayedTracks({"limit": 1})
   if (lastPlayed.items.length > 0) {
     const lyrics = await getLyrics(lastPlayed.items[0].track.artists[0].name, lastPlayed.items[0].track.name);
@@ -96,7 +96,7 @@ export const getInitialSong = async () => {
   return emptySong;
 }
 
-const filterDuplicateTracks = tracks => {
+export const filterDuplicateTracks = tracks => {
   const filteredTracks = [];
   const map = new Map();
   for (let item of tracks.items) {
