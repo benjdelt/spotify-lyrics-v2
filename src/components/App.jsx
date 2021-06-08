@@ -24,13 +24,13 @@ function App() {
 
   useEffect(() => {
     setLoading({user: false, song: false});
-    async function setInitialDatat() {
+    async function setInitialData() {
       setLoading({user: true, song: true});
       const userData = await getUser();
       setUser(prevUser => ({
         ...prevUser,
         name: userData.name,
-        avatarUrl: userData.avatar,
+        avatarUrl: userData.avatarUrl,
       }));
       setLoading(prevLoading => ({
         ...prevLoading,
@@ -65,7 +65,7 @@ function App() {
         song: false,
       }));     
     }
-    setInitialDatat();
+    setInitialData();
   }, []);
 
   const setToCurrentlyPlaying = async () => {

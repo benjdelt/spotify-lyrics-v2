@@ -3,6 +3,18 @@
 exports[`should take a snapshot 1`] = `
 <DocumentFragment>
   <div
+    class="dropdown-option"
+  >
+    <span
+      class="dropdown-option-text"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`should take a snapshot 2`] = `
+<DocumentFragment>
+  <div
     class="dropdown-parent"
   >
     <button
