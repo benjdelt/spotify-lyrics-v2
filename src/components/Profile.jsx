@@ -28,7 +28,7 @@ function Profile({user, loading, logout}) {
               <DropdownMenuItem key={1} handleClick={logout} >{t('user.logout')}</DropdownMenuItem>
           </Dropdown>
         ) : (
-          <a href="/.netlify/functions/login" className="login">{ t('login.button') }</a>
+          <a href="/.netlify/functions/login" className="login" title="login">{ t('login.button') }</a>
       ))}
     </section>
   );

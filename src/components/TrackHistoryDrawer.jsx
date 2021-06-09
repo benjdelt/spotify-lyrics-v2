@@ -54,7 +54,7 @@ function TrackHistoryDrawer(props) {
 
   return (
     <div className="drawer-parent">
-      <button onClick={handleClick} className="drawer-label">
+      <button onClick={handleClick} className="drawer-label" title="dropdown-arrow">
         {props.label} &nbsp;
         <span className="menu-text"><FontAwesomeIcon icon={open ? openIcon : closedIcon} /></span>
       </button>

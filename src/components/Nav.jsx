@@ -42,7 +42,7 @@ function Nav({
         {loggedIn &&
           <> 
             <li>
-              <button onClick={setToCurrentlyPlaying} >
+              <button onClick={setToCurrentlyPlaying} title="curently-playing">
                 <FontAwesomeIcon icon={faVolumeUp} />&nbsp;
                 <span className="menu-text">{ t('nav.currentlyPlaying') }</span>
               </button>
@@ -64,7 +64,7 @@ function Nav({
           </>
         }
         <li>
-          <a href="https://github.com/benjdelt/spotify-lyrics-v2" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/benjdelt/spotify-lyrics-v2" target="_blank" rel="noopener noreferrer" title="Github">
             <FontAwesomeIcon icon={faGithub} />&nbsp;
             <span className="menu-text">{ t('nav.seeOnGithub') }</span>
           </a>

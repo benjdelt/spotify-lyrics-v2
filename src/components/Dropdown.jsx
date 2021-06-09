@@ -59,7 +59,7 @@ function Dropdown(props) {
 
   return (
     <div className="dropdown-parent">
-      <button onClick={handleClick} className="dropdown-label">
+      <button onClick={handleClick} className="dropdown-label" name="dropdown-arrow">
         {props.label} &nbsp;
         <FontAwesomeIcon icon={open ? openIcon : closedIcon} />
       </button>
