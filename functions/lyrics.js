@@ -1,4 +1,4 @@
-const axios = require('axios');
+const lyricsSearcher = require("lyrics-searcher");
 
 exports.handler = async function(event, context) {
   
@@ -12,24 +12,24 @@ exports.handler = async function(event, context) {
   }
 
   const artist = event.queryStringParameters.artist;
-  const title = event.queryStringParameters.title;
-  const uri = `https://api.lyrics.ovh/v1/${artist}/${cleanTitle(title)}`
+  const title = cleanTitle(event.queryStringParameters.title);
 
   try {
-    const response = await axios.get(uri)
+    const lyrics = await lyricsSearcher(artist, title);
     return {
       statusCode: 200,
       headers: {
         "Set-Cookie": event.multiValueHeaders.cookie,
       },
-      body: JSON.stringify(response.data.lyrics),
+      body: JSON.stringify(lyrics),
     };
   } catch (error) {
-    return {
-      statusCode: 404,
-      headers: {
-        "Set-Cookie": event.multiValueHeaders.cookie,
-      },
-    };
+      console.error(error.message);
+      return {
+        statusCode: 404,
+        headers: {
+          "Set-Cookie": event.multiValueHeaders.cookie,
+        },
+      };
   }
 }
