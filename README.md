@@ -3,12 +3,10 @@
 # Spotify Lyrics
 
 A full stack web app built with React and Netlify Functions. It connects to the Spotify
-API and to Lyrics.ovh to automatically get the information and the lyrics of the track
+API and a lyric web scrapper to automatically get the information and the lyrics of the track
 currently being played on the user's Spotify account. Users can also see information
 and lyrics for the more recently played tracks on their account. It is available in
 English and French.
-
-This app is deployed on [Netlify](https://bens-spotify-lyrics.netlify.app/).
 
 ## Getting Started
 
